@@ -1,40 +1,13 @@
-const startButton = document.getElementById('start-btn');
-const startText = document.getElementById('start-txt');
-const hasKey = true;
-const door = 'locked';
-const noteStart = true;
-const hasNoteOne = true;
-const rug = document.getElementById('rug');
-const hasNoteTwo = true;
-
-var sfx = {
-  rug: new Howl({
-    src: ['https://assets.codepen.io/21542/howler-push.mp3'],
-    html5: true,
-  }),
-  // boost: new Howl({
-  //   src: ['https://assets.codepen.io/21542/howler-sfx-levelup.mp3'],
-  //   loop: false,
-  //   onend: function () {
-  //     console.log('Done playing sfx!');
-  //   },
-  // }),
-};
-
-const startingMinutes = 2;
+const startingMinutes = 1;
 let time = startingMinutes * 120;
+let hasKey = true;
+let door = 'locked';
+let noteStart = true;
+let hasNoteOne = true;
+let hasNoteTwo = true;
+
 const countdownEl = document.getElementById('countdown');
-console.log(startButton);
-if (startButton) {
-  startButton.addEventListener('click', function () {
-    startGame();
-  });
-}
-if (rug) {
-  rug.addEventListener('click', function () {
-    sfx.rug.play();
-  });
-}
+
 function startGame() {
   alert('you smell posion flling the room hurry and find the key 1st hint kip');
   startButton.classList.add('hide');
