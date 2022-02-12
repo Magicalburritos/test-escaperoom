@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <title>Escape Room</title>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.min.js"></script>
+<script src="room.js"></script>
+
+
+
 
 <body>
     <div>
@@ -23,7 +28,7 @@
         <div id="noteOneBlock"><img id="book" src="crab-roombook.png" onclick="tryBook()">
             <img id="note1" src="notebook.png" onclick="noteOne()">
         </div>
-        <div id="keyBlock"><img id="rug" src="crab-roomrug.png" onclick="tryRug()">
+        <div id="keyBlock"><img id="rug" src="crab-roomrug.png">
             <img id="key" src="key.png" onclick="pickupKey()">
         </div>
         <img id="table" src="crab-roomtable.png" onclick="tryTable()">
@@ -34,6 +39,6 @@
     </div>
 
 </body>
-<script src="room.js"></script>
+
 
 </html>
