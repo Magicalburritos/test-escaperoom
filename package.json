@@ -1,0 +1,23 @@
+{
+  "name": "test-escaperoom",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Magicalburritos/test-escaperoom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Magicalburritos/test-escaperoom/issues"
+  },
+  "homepage": "https://github.com/Magicalburritos/test-escaperoom#readme",
+  "dependencies": {
+    "howler": "^2.2.3"
+  }
+}

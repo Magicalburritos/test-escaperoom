@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Escape Room</title>
+</head>
+
+<body>
+    <div>
+        <p id="countdown"></p>
+    </div>
+    <div id='start'>
+        <h2 id="start-txt" class="start-txt txt">you have 1 minuite to find and solve the clues to get the key and
+            Escape</h2>
+        <button id="start-btn" class="start-btn btn">start</button>
+    </div>
+    <div id="room">
+        <img id="door" src="crab-roomdoor.png" onclick="tryDoor()">
+        <div id="noteOneBlock"><img id="book" src="crab-roombook.png" onclick="tryBook()">
+            <img id="note1" src="notebook.png" onclick="noteOne()">
+        </div>
+        <div id="keyBlock"><img id="rug" src="crab-roomrug.png" onclick="tryRug()">
+            <img id="key" src="key.png" onclick="pickupKey()">
+        </div>
+        <img id="table" src="crab-roomtable.png" onclick="tryTable()">
+        <div id="noteTwoBlock"><img id="painting" src="crab-roomcrab.png" onclick="tryPainting()">
+            <img id="note2" src="note2.png" onclick="noteTwo()">
+        </div>
+
+    </div>
+
+</body>
+<script src="room.js"></script>
+
+</html>
