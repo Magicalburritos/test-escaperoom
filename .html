@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 0">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,9 +9,7 @@
   </head>
 
   <body>
-    <div>
-      <p id="countdown"></p>
-    </div>
+    <p id="countdown"></p>
     <div id="start">
       <h2 id="start-txt" class="start-txt txt">
         you have 1 minuite to find and solve the clues to get the key and Escape
@@ -20,10 +18,9 @@
     </div>
     <div id="room">
       <img id="door" src="crab-roomdoor.png" onclick="tryDoor()" />
-      <div id="noteOneBlock">
-        <img id="book" src="crab-roombook.png" onclick="tryBook()" />
-        <img id="note1" src="notebook.png" onclick="noteOne()" />
-      </div>
+
+      <img id="book" src="crab-roombook.png" onclick="tryBook()" />
+      <img id="note1" src="notebook.png" onclick="noteOne()" />
       <div id="keyBlock">
         <img id="rug" src="crab-roomrug.png" />
         <img id="key" src="key.png" onclick="pickupKey()" />
@@ -34,8 +31,20 @@
         <img id="note2" src="notebook.png" onclick="noteTwo()" />
       </div>
     </div>
-    <script src=""></script>
-
+    <div class="modal" id="modal">
+      <div class="modal-container">
+        <div class="modal-close-button">&times;</div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+    <div class="score" id="score">
+      <div class="score-container">
+        <div class="score-close-button">&times;</div>
+        <div class="score-body"></div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="room.js"></script>
   </body>
 </html>

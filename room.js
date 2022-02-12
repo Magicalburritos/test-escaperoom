@@ -1,14 +1,21 @@
 const startButton = document.getElementById('start-btn');
 const startText = document.getElementById('start-txt');
 const rug = document.getElementById('rug');
+const modal = $('#modal');
+const modalBody = $('.modal-body');
+const mcloseButton = $('.model-close-button');
+const score = $('#score');
+const scoreBody = $('.score-body');
+const scloseButton = $('.score-close-button');
 const startingMinutes = 1;
 const countdownEl = document.getElementById('countdown');
-
+let yourScore;
 let hasKey = false;
 let noteStart = false;
 let hasNoteOne = false;
 let hasNoteTwo = false;
 let time = startingMinutes * 120;
+let gameStarted = false;
 
 startButton.addEventListener('click', startGame);
 
@@ -20,31 +27,38 @@ rug.addEventListener('click', tryRug);
 // key to door
 
 function startGame() {
-  alert('you smell posion flling the room hurry and find the key 1st hint kip');
+  openModal(
+    'you smell posion flling the room hurry and find the key 1st hint kip'
+  );
   startButton.classList.add('hide');
   startText.style.display = 'none';
   updateCountdown;
   setInterval(updateCountdown, 1000);
+  gameStarted = true;
 }
 
 function noteOne() {
-  alert('have a clawsome day!');
-  document.getElementById('note1').style.opacity = '0';
-  document.getElementById('book').style.opacity = '10';
-  hasNoteOne = true;
+  if (gameStarted) {
+    openModal('have a clawsome day!');
+    document.getElementById('note1').style.opacity = '0';
+    document.getElementById('book').style.opacity = '10';
+    hasNoteOne = true;
+  }
 }
 function pickupKey() {
-  console.log(hasKey);
-  alert('hurry to the door!');
-  // document.getElementById('rug').style.opacity = '10';
-  hasKey = true;
-  console.log(hasKey);
+  if (gameStarted) {
+    openModal('hurry to the door!');
+    // document.getElementById('rug').style.opacity = '10';
+    hasKey = true;
+  }
 }
 function noteTwo() {
-  alert('its getting cold i need somthing to keep me warm!');
-  document.getElementById('note2').style.opacity = '0';
-  document.getElementById('painting').style.opacity = '10';
-  hasNoteTwo = true;
+  if (gameStarted) {
+    openModal('its getting cold i need somthing to keep me warm!');
+    document.getElementById('note2').style.opacity = '0';
+    document.getElementById('painting').style.opacity = '10';
+    hasNoteTwo = true;
+  }
 }
 
 function reset() {
@@ -52,54 +66,67 @@ function reset() {
 }
 
 function tryDoor() {
-  console.log(hasKey);
-  if (hasKey === true) {
-    console.log(hasKey);
-    alert('you made it congrats!');
-  } else {
-    console.log(hasKey);
-    alert('hurry find the key');
+  if (gameStarted && !yourScore) {
+    if (hasKey === true) {
+      openModal('you made it congrats!');
+      scoreScreen(time);
+      time = 0;
+    } else {
+      openModal('hurry find the key');
+    }
   }
 }
 function pickupKey() {
-  alert('congrats you pickup the key but can you make it in time');
-  document.getElementById('key').style.opacity = '0';
-  hasKey = true;
+  if (gameStarted) {
+    openModal('congrats you pickup the key but can you make it in time');
+    document.getElementById('key').style.opacity = '0';
+    hasKey = true;
+  }
 }
 
 function tryPainting() {
-  if (hasNoteOne == true) {
-    document.getElementById('painting').style.opacity = '0';
-    document.getElementById('painting').style.zIndex = -1;
-    alert('you find somthing behind');
-  } else {
-    alert('somthings off but you dont know yet');
+  if (gameStarted) {
+    if (hasNoteOne == true) {
+      document.getElementById('painting').style.opacity = '0';
+      document.getElementById('painting').style.zIndex = -1;
+      openModal('you find somthing behind');
+    } else {
+      openModal('somthings off but you dont know yet');
+    }
   }
 }
 
 function tryRug() {
-  if (hasNoteTwo == true) {
-    alert('you pull the rug back');
-    document.getElementById('rug').style.opacity = '0';
-    document.getElementById('rug').style.zIndex = -1;
-  } else {
-    alert('this looks soft enough to sleep on!');
+  if (gameStarted) {
+    if (hasNoteTwo == true) {
+      openModal('you pull the rug back');
+      document.getElementById('rug').style.opacity = '0';
+      document.getElementById('rug').style.zIndex = -1;
+    } else {
+      openModal('this looks soft enough to sleep on!');
+    }
   }
 }
 function tryBook() {
-  alert('you manage to find a book that seems out of place with a note in it!');
-  document.getElementById('book').style.opacity = '0';
-  document.getElementById('book').style.zIndex = -1;
+  if (gameStarted) {
+    openModal(
+      'you manage to find a book that seems out of place with a note in it!'
+    );
+    document.getElementById('book').style.opacity = '0';
+    document.getElementById('book').style.zIndex = -1;
+  }
 }
 function tryTable() {
-  console.log('what are you doing');
-  alert('you are too weak to do that');
+  if (gameStarted) {
+    openModal('you are too weak to do that');
+  }
 }
 
-// var endGame = function () {
-//   window.alert('you managed to escape!')
-// }
-// score = time it took to get out
+function scoreScreen(temptime) {
+  yourScore = temptime * 100;
+  score.css('display', 'flex');
+  scoreBody.text(`You made it! Your score is: ${yourScore}`);
+}
 
 function updateCountdown() {
   const minutes = Math.floor(time / 60);
@@ -111,3 +138,15 @@ function updateCountdown() {
   time--;
   time = time < 0 ? 0 : time;
 }
+
+function openModal(text) {
+  modal.css('display', 'flex');
+  modalBody.text(text);
+  setTimeout(() => {
+    closeModal();
+  }, 2000);
+}
+function closeModal() {
+  modal.css('display', 'none');
+}
+mcloseButton.click(closeModal);
