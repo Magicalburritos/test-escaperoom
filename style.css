@@ -102,6 +102,14 @@ h2 {
 }
 #note2 {
   position: absolute;
+  top: 360px;
+  bottom: 500px;
+  height: 50px;
+  width: 50px;
+  right: 1189px;
+  left: 180px;
+  z-index: 1;
+  position: absolute;
 }
 @media (orientation: landscape) {
   #book {

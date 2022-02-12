@@ -1,40 +1,24 @@
 const startButton = document.getElementById('start-btn');
 const startText = document.getElementById('start-txt');
-const hasKey = true;
-const door = 'locked';
-const noteStart = true;
-const hasNoteOne = true;
 const rug = document.getElementById('rug');
-const hasNoteTwo = true;
-
-var sfx = {
-  rug: new Howl({
-    src: ['https://assets.codepen.io/21542/howler-push.mp3'],
-    html5: true,
-  }),
-  // boost: new Howl({
-  //   src: ['https://assets.codepen.io/21542/howler-sfx-levelup.mp3'],
-  //   loop: false,
-  //   onend: function () {
-  //     console.log('Done playing sfx!');
-  //   },
-  // }),
-};
-
-const startingMinutes = 2;
-let time = startingMinutes * 120;
+const startingMinutes = 1;
 const countdownEl = document.getElementById('countdown');
-console.log(startButton);
-if (startButton) {
-  startButton.addEventListener('click', function () {
-    startGame();
-  });
-}
-if (rug) {
-  rug.addEventListener('click', function () {
-    sfx.rug.play();
-  });
-}
+
+let hasKey = false;
+let noteStart = false;
+let hasNoteOne = false;
+let hasNoteTwo = false;
+let time = startingMinutes * 120;
+
+startButton.addEventListener('click', startGame);
+
+rug.addEventListener('click', tryRug);
+
+// book, gets note1
+// note1 to crab gets note2
+// note2 to rug gets key
+// key to door
+
 function startGame() {
   alert('you smell posion flling the room hurry and find the key 1st hint kip');
   startButton.classList.add('hide');
@@ -50,9 +34,11 @@ function noteOne() {
   hasNoteOne = true;
 }
 function pickupKey() {
+  console.log(hasKey);
   alert('hurry to the door!');
-  document.getElementById('rug').style.opacity = '10';
+  // document.getElementById('rug').style.opacity = '10';
   hasKey = true;
+  console.log(hasKey);
 }
 function noteTwo() {
   alert('its getting cold i need somthing to keep me warm!');
@@ -66,19 +52,19 @@ function reset() {
 }
 
 function tryDoor() {
-  console.log('you clicked the door');
-  if (hasKey == true) {
-    door == 'unlocked';
+  console.log(hasKey);
+  if (hasKey === true) {
+    console.log(hasKey);
     alert('you made it congrats!');
   } else {
-    hasKey == false;
+    console.log(hasKey);
     alert('hurry find the key');
   }
 }
 function pickupKey() {
-  hasKey == true;
   alert('congrats you pickup the key but can you make it in time');
   document.getElementById('key').style.opacity = '0';
+  hasKey = true;
 }
 
 function tryPainting() {
@@ -87,19 +73,16 @@ function tryPainting() {
     document.getElementById('painting').style.zIndex = -1;
     alert('you find somthing behind');
   } else {
-    hasNoteOne == false;
     alert('somthings off but you dont know yet');
   }
 }
 
 function tryRug() {
-  sfx.rug.play();
-  alert('you pull the rug back');
   if (hasNoteTwo == true) {
+    alert('you pull the rug back');
     document.getElementById('rug').style.opacity = '0';
     document.getElementById('rug').style.zIndex = -1;
   } else {
-    hasNoteTwo == false;
     alert('this looks soft enough to sleep on!');
   }
 }
